@@ -1,9 +1,24 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start; /* Align items to the start */
   align-items: center;
-  padding: 6rem;
+  padding: 12rem; 
   min-height: 100vh;
+  background-image: url('./Background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: black;
 }
 
+.title {
+  margin-bottom: 2rem; /* Space between title and text */
+  margin-top: -3rem; /* Move the title upward */
+  border-bottom: 2px solid white; /* Underline */
+  padding-bottom: 0.5rem;
+}
+
+.text {
+  margin-bottom: 4rem; /* Space between text and button */
+}
