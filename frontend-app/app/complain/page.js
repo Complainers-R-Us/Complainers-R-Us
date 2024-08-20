@@ -1,9 +1,10 @@
 "use client";
 
-import { Box, Stack, TextField, Button, Typography, CircularProgress } from "@mui/material";
+import { Box, Stack, TextField, Button, Typography, Breadcrumbs, Link } from "@mui/material";
 import { useState } from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export default function ComplainPage() {
   const [messages, setMessages] = useState([]);
@@ -15,7 +16,7 @@ export default function ComplainPage() {
       setIsLoading(true);
       setMessages([...messages, { role: 'user', content: message }]);
       setMessage('');
-      
+
       // Simulate a response from the chatbot
       setTimeout(() => {
         setMessages((prevMessages) => [
@@ -34,6 +35,11 @@ export default function ComplainPage() {
     }
   };
 
+  function handleClick(event) {
+    event.preventDefault();
+    console.info('You clicked a breadcrumb.');
+  }
+
   return (
     <Box
       width="100vw"
@@ -42,13 +48,47 @@ export default function ComplainPage() {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      sx={{
-        backgroundImage: `url("/workspaces/Complainers-R-Us/frontend-app/app/Background.jpg")`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
+      position="relative"
+      overflow="hidden"
     >
+      {/* Video Background */}
+      <video
+  autoPlay
+  loop
+  muted
+  style={{
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    transform: "translate(-50%, -50%)",
+    zIndex: -1,
+  }}
+>
+  <source src="/videos/animated_background.mp4" type="video/mp4" />
+  {/* Fallback text in case video doesn't load */}
+  Your browser does not support the video tag.
+</video>
+
+
+      <div role="presentation" onClick={handleClick}>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link underline="hover" color="inherit" href="/">
+            <img src="/home-icon.png" alt="Home" style={{ height: '24px', marginRight: '8px' }} />
+          </Link>
+          <Link
+            underline="hover"
+            color="text.primary"
+            href="/complain"
+            aria-current="page"
+          >
+            Talk to Us
+          </Link>
+        </Breadcrumbs>
+      </div>
+
       <Box
         width="90%"
         maxWidth="400px"
@@ -57,9 +97,10 @@ export default function ComplainPage() {
         boxShadow="0px 4px 20px rgba(0, 0, 0, 0.1)"
         p={2}
         position="relative"
+        mt={2}
       >
         <Typography variant="h6" sx={{ color: '#2196f3', mb: 2 }}>
-          TravelPal
+          Complainers R Us
         </Typography>
 
         <Stack
@@ -99,6 +140,20 @@ export default function ComplainPage() {
           ))}
         </Stack>
 
+        <Box display="flex" justifyContent="center" my={2}>
+          <Button
+            variant="contained"
+            sx={{
+              width: '60px',
+              height: '60px',
+              borderRadius: '50%',
+              minWidth: '40px',
+            }}
+          >
+            <KeyboardVoiceIcon />
+          </Button>
+        </Box>
+
         <Stack direction="row" mt={2} alignItems="center">
           <TextField
             fullWidth
@@ -137,6 +192,7 @@ export default function ComplainPage() {
     </Box>
   );
 }
+
 
 
 // "use client"

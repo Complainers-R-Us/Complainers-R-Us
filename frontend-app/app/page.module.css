@@ -1,24 +1,32 @@
 .main {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align items to the start */
+  justify-content: flex-start;
   align-items: center;
-  padding: 12rem; 
+  padding: 12rem;
   min-height: 100vh;
-  background-image: url('./Background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  overflow: hidden; /* Ensure content does not overflow */
   color: black;
 }
 
+.backgroundVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the video covers the entire area */
+  z-index: -1; /* Place the video behind other elements */
+}
+
 .title {
-  margin-bottom: 2rem; /* Space between title and text */
-  margin-top: -3rem; /* Move the title upward */
-  border-bottom: 2px solid white; /* Underline */
+  margin-bottom: 2rem;
+  margin-top: -3rem;
+  border-bottom: 2px solid white;
   padding-bottom: 0.5rem;
 }
 
 .text {
-  margin-bottom: 4rem; /* Space between text and button */
+  margin-bottom: 4rem;
 }
